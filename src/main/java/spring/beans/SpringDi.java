@@ -26,11 +26,8 @@ public class SpringDi {
      */
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-        context.register(Store.class);
-        context.register(ConsoleInput.class);
-        context.register(StartUI.class);
+        context.scan("spring.context");
         context.refresh();
-
         StartUI ui = context.getBean(StartUI.class);
 
         ui.add("Please write a word");

@@ -7,6 +7,7 @@ package spring.context;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Component;
 
 /**
  * Class StartUI -
@@ -15,6 +16,7 @@ import org.apache.logging.log4j.Logger;
  * @version 0.1
  * @since 19.04.2020
  */
+@Component
 public class StartUI {
 
     private static final Logger LOG = LogManager.getLogger(StartUI.class.getName());

@@ -7,6 +7,7 @@ package spring.context;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Component;
 
 import java.io.*;
 
@@ -17,6 +18,7 @@ import java.io.*;
  * @version 0.1
  * @since 19.04.2020
  */
+@Component
 public class ConsoleInput {
 
     /**
