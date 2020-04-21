@@ -8,6 +8,8 @@
         http://www.liquibase.org/xml/ns/dbchangelog-ext
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-<!--    <include file="first_version/001.sql" relativeToChangelogFile="true"/>-->
+    <include file="first_version/000.sql" relativeToChangelogFile="true"/>
+    <include file="first_version/001.sql" relativeToChangelogFile="true"/>
+    <include file="first_version/002.sql" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>
