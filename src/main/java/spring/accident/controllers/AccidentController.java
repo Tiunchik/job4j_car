@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import spring.accident.programm.Logic;
 
 /**
- * Class AccidentController -
+ * Class AccidentController - main web controller
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
  * @version 0.1
@@ -25,7 +25,9 @@ import spring.accident.programm.Logic;
 public class AccidentController {
     private static final Logger LOG = LogManager.getLogger(AccidentController.class.getName());
 
-
+    /**
+     * link to busness logic class
+     */
     private Logic logic;
 
     @Autowired

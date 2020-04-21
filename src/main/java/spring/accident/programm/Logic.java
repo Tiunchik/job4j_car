@@ -11,8 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import spring.accident.database.DataService;
 import spring.accident.models.Accident;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -35,17 +37,8 @@ public class Logic {
     /**
      * link to database
      */
-    private DataBase base;
-
-    /**
-     * setter for base - for spring actions
-     *
-     * @param base link to DB
-     */
     @Autowired
-    public void setBase(DataBase base) {
-        this.base = base;
-    }
+    DataService base;
 
     /**
      * provide full list of saved accidents
@@ -53,7 +46,9 @@ public class Logic {
      * @return list of saved accidents
      */
     public List<Accident> getAll() {
-        return base.getAll();
+        List<Accident> list = new LinkedList<>();
+        base.findAll().forEach(list::add);
+        return list;
     }
 
 }

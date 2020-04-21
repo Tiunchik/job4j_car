@@ -7,10 +7,15 @@ package spring.accident.models;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.annotations.Type;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Objects;
 
 /**
@@ -20,16 +25,19 @@ import java.util.Objects;
  * @version 0.1
  * @since 20.04.2020
  */
-
+@Entity
 @Component
 @Scope("prototype")
 public class Accident {
     private static final Logger LOG = LogManager.getLogger(Accident.class.getName());
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
 
     private String name;
 
+    @Type(type = "text")
     private String text;
 
     private String address;
