@@ -3,7 +3,7 @@
  *
  * @author Maksim Tiunchik
  */
-package spring.accident.sprconfig;
+package spring.accident.dbconfig;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -28,9 +28,10 @@ import java.util.Properties;
  * @since 20.04.2020
  */
 @Configuration
-//@ComponentScan(basePackages = "spring.accident.models")
-public class SpringDBconfig {
-    private static final Logger LOG = LogManager.getLogger(SpringDBconfig.class.getName());
+@EnableJpaRepositories("spring.accident.database")
+@ComponentScan("spring.accident.database")
+public class DBconfig {
+    private static final Logger LOG = LogManager.getLogger(DBconfig.class.getName());
 
     @Bean
     DriverManagerDataSource dataSource() {

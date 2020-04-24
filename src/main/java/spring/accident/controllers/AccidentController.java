@@ -26,7 +26,7 @@ public class AccidentController {
     private static final Logger LOG = LogManager.getLogger(AccidentController.class.getName());
 
     /**
-     * link to busness logic class
+     * link to business logic class
      */
     private Logic logic;
 
@@ -35,7 +35,7 @@ public class AccidentController {
         this.logic = logic;
     }
 
-    @GetMapping("/main")
+    @GetMapping(path = {"/", "/main"})
     public String getMainPage(ModelMap model) {
         model.addAttribute("accidents", logic.getAll());
         return "accident.jsp";

@@ -5,8 +5,6 @@
  */
 package spring.accident.sprconfig;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -27,9 +25,10 @@ import org.springframework.web.servlet.view.JstlView;
  */
 @Configuration
 @EnableWebMvc
-@EnableJpaRepositories(basePackages = {"spring.accident.database"})
-@ComponentScan(basePackages = {"spring.accident.database", "spring.accident.programm", "spring.accident.controllers", "spring.accident.models"})
-@Import(SpringDBconfig.class)
+@ComponentScan(basePackages = {"spring.accident.dbconfig",
+        "spring.accident.programm", "spring.accident.controllers",
+        "spring.accident.models"})
+
 public class SpringConfig implements WebMvcConfigurer {
 
     @Override

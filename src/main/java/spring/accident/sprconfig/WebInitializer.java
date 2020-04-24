@@ -5,16 +5,9 @@
  */
 package spring.accident.sprconfig;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.springframework.web.WebApplicationInitializer;
-import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
-import org.springframework.web.servlet.DispatcherServlet;
+import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+import spring.accident.secconfig.SecurityConfig;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRegistration;
-import javax.servlet.jsp.jstl.core.Config;
 
 /**
  * Class WebInitializer - main class for loading dispatcher servlet
@@ -23,14 +16,20 @@ import javax.servlet.jsp.jstl.core.Config;
  * @version 0.1
  * @since 21.04.2020
  */
-public class WebInitializer implements WebApplicationInitializer {
+public class WebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
-    public void onStartup(ServletContext servletContext) throws ServletException {
-        AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
-        ctx.register(SpringConfig.class);
-        ctx.setServletContext(servletContext);
-        ServletRegistration.Dynamic servlet = servletContext.addServlet("dispatcher", new DispatcherServlet(ctx));
-        servlet.addMapping("/");
-        servlet.setLoadOnStartup(1);
+    @Override
+    protected Class<?>[] getRootConfigClasses() {
+        return new Class[]{SecurityConfig.class};
+    }
+
+    @Override
+    protected Class<?>[] getServletConfigClasses() {
+        return new Class[]{SpringConfig.class};
+    }
+
+    @Override
+    protected String[] getServletMappings() {
+        return new String[]{"/"};
     }
 }
