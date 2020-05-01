@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
@@ -25,22 +26,13 @@ import org.springframework.web.servlet.view.JstlView;
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = {"spring.accident.dbconfig",
-        "spring.accident.programm", "spring.accident.controllers",
-        "spring.accident.models"})
-
-public class SpringConfig implements WebMvcConfigurer {
+public class WebConfig implements WebMvcConfigurer {
 
     @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/resources/**").addResourceLocations("/WEB-INF/resources/*");
-    }
-
-    @Bean
-    public InternalResourceViewResolver viewResolver() {
-        InternalResourceViewResolver view = new InternalResourceViewResolver();
-        view.setViewClass(JstlView.class);
-        view.setPrefix("/WEB-INF/views/");
-        return view;
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/main").setViewName("accidents");
+        registry.addViewController("/login").setViewName("login");
+        registry.addViewController("/info").setViewName("info");
+        registry.addViewController("/change").setViewName("change");
     }
 }

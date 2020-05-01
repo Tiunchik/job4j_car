@@ -12,7 +12,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
- * Class AccessController - controller for login and logut methods
+ * Class AccessController - controller for login
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
  * @version 0.1
@@ -21,8 +21,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class AccessController {
 
+    /**
+     * provide logic page
+     *
+     * @return
+     */
     @GetMapping(path = {"/login"})
-    public String getMainPage() {
-        return "login.jsp";
+    public String getLogicPage() {
+        return "login";
     }
 }

@@ -5,18 +5,15 @@
  */
 package spring.accident.models;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Type;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.sql.Timestamp;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * Class Accident - data model for accidents
@@ -27,9 +24,7 @@ import java.util.Objects;
  */
 @Entity
 @Component
-@Scope("prototype")
 public class Accident {
-    private static final Logger LOG = LogManager.getLogger(Accident.class.getName());
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -41,6 +36,19 @@ public class Accident {
     private String text;
 
     private String address;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Officer officer;
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "accidents")
+    private Set<Participant> membo = new HashSet<>();
+
+    private Timestamp time;
+
+    @CreationTimestamp
+    private Timestamp created;
+
+
 
     public int getId() {
         return id;
@@ -72,6 +80,38 @@ public class Accident {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Set<Participant> getMembo() {
+        return membo;
+    }
+
+    public void setMembo(Set<Participant> membo) {
+        this.membo = membo;
+    }
+
+    public Officer getOfficer() {
+        return officer;
+    }
+
+    public void setOfficer(Officer officer) {
+        this.officer = officer;
+    }
+
+    public Timestamp getTime() {
+        return time;
+    }
+
+    public void setTime(Timestamp time) {
+        this.time = time;
+    }
+
+    public Timestamp getCreated() {
+        return created;
+    }
+
+    public void setCreated(Timestamp created) {
+        this.created = created;
     }
 
     @Override

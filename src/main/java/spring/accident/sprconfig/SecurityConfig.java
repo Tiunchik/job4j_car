@@ -3,7 +3,7 @@
  *
  * @author Maksim Tiunchik
  */
-package spring.accident.secconfig;
+package spring.accident.sprconfig;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import spring.accident.programm.AuthenProvider;
 
 
 /**
@@ -27,27 +28,25 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    AuthenProvider authenProvider;
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth)
             throws Exception {
-        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-        auth.inMemoryAuthentication()
-                .withUser("spring")
-                .password(encoder.encode("spring"))
-                .roles("USER");
+        auth.authenticationProvider(authenProvider);
     }
+
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
         http.authorizeRequests()
-                .antMatchers("/", "/main").access("hasRole('USER')")
-                .and().formLogin(
-                        form -> form
-                .loginPage("/login"
-                )
+                .antMatchers("/", "/main").access("hasAnyRole('LIEUTENANT', 'ADMIN', 'MAJOR')")
+                .antMatchers("/info/*").access("hasAnyRole('LIEUTENANT', 'ADMIN', 'MAJOR')")
+                .and().formLogin(form -> form.loginPage("/login")
                 .permitAll());
-
         http.csrf().disable();
+
     }
 }

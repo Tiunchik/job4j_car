@@ -1,0 +1,122 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Full info</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .brd {
+            max-width: content-box;
+            max-height: content-box;
+        }
+    </style>
+</head>
+<body>
+<div class="jumbotron text-center">
+    <h1>Full info about accident</h1>
+</div>
+<div class="container">
+    <table class="table">
+        <col width="20%">
+        <col width="80%">
+        <thead>
+        <tr>
+            <th>INFO</th>
+            <th>PHOTO</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td th:object="${accident}">
+                <div class="row" th:text="'ID: ' + *{id}"></div>
+                <br>
+                <div class="row" th:text="'Name: ' + *{name}"></div>
+                <br>
+                <div class="row" th:text="'Des.: ' + *{text}"></div>
+                <br>
+                <div class="row" th:text="'Addres: ' + *{address}"></div>
+                <br>
+                <div class="row" th:text="'Created: ' + *{created}"></div>
+                <br>
+                <div class="row" th:text="'Accident time: ' + *{time}"></div>
+                <br>
+            </td>
+            <td><img class="rounded brd" src="#" alt="Can't find image"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="container">
+    <table class="table">
+        <col width="20%">
+        <col width="40%">
+        <col width="40%">
+        <thead>
+        <tr>
+            <th>Passport ID</th>
+            <th>Name and surname</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="part : ${partisipants}">
+            <td th:text="${part.iddata.passport}"></td>
+            <td th:text="${part.iddata.firstName} + ' ' + ${part.iddata.secondName}"></td>
+            <td th:text="${part.description}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="container">
+        <!-- Button to Open the Modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+            Add partisipant
+        </button>
+
+        <!-- The Modal -->
+        <div class="modal" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Fill in information about partisipant</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <form th:action="@{/info/{id}(id=${accident.id})}" modelAtribute="partisipant" method="post">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="First name"
+                                       name="iddata.firstName">
+                                <br>
+                                <input type="text" class="form-control" placeholder="Second name"
+                                       name="iddata.secondName">
+                                <br>
+                                <input type="text" class="form-control" placeholder="Passport ID"
+                                       name="iddata.passport">
+                                <br>
+                                <textarea rows="3" class="form-control" placeholder="Description"
+                                          name="description"></textarea>
+                                <br>
+                                <input type="hidden" class="form-control" name="accidents" th:value="${accident.id}">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="submit">OK</button>
+                                    <button class="btn btn-danger" type="button" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
+

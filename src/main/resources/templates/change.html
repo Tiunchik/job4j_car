@@ -1,0 +1,40 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Change info</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="jumbotron text-center">
+    <h1>Change info about accident</h1>
+</div>
+<div class="container">
+    <form th:action="@{/change}" modelAtribute="accident" method="post" th:object="${accident}">
+        <div class="form-group">
+            <input type="hidden" class="form-control" name="id" id="id" placeholder="" th:value="*{id}">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" name="name" id="name" placeholder="" th:value="*{name}" required>
+        </div>
+        <div class="form-group">
+            <label for="address">Address:</label>
+            <input type="text" class="form-control" name="address" id="address" placeholder="" th:value="*{address}" required>
+            <input type="hidden" class="form-control" name="officer" id="officer" placeholder="" th:value="*{officer.docserial}" required>
+        </div>
+        <div class="form-group">
+            <label for="gettime">Time:</label>
+            <input type="datetime-local" class="form-control" name="gettime" id="gettime" placeholder="" th:value="*{time}" required>
+        </div>
+        <div class="form-group">
+            <label for="text">Description:</label>
+            <textarea class="form-control" rows="3" name="text" id="text" placeholder="" th:text="*{text}"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+</body>
+</html>
+

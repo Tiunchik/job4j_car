@@ -1,0 +1,109 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Accident List</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script th:inline="javascript">
+        function moreInfo(number) {
+            alert(number);
+        }
+    </script>
+</head>
+<body>
+
+<div class="jumbotron text-center">
+    <h1>Main accident table</h1>
+    <p></p>
+</div>
+
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+        <col width="5%">
+        <col width="10%">
+        <col width="40%">
+        <col width="15%">
+        <col width="15%">
+        <col width="15%">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Place</th>
+            <th>Time</th>
+            <th>More info</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="accident : ${accidents}">
+            <td th:text="${accident.id}" id="id"></td>
+            <td th:text="${accident.name}"></td>
+            <td th:text="${accident.text}"></td>
+            <td th:text="${accident.address}"></td>
+            <div th:if="${accident.time}">
+                <td th:text="${accident.time.toGMTString()}"></td>
+            </div>
+            <div th:unless="${accident.time}">
+                <td>none</td>
+            </div>
+            <td>
+                <div class="row">
+                    <a href="#" th:href="@{/info/{id}(id=${accident.id})}" class="btn btn-info" role="button">More info</a>
+                    <a href="#" th:href="@{/change/{id}(id=${accident.id})}" class="btn btn-info" role="button">Edit</a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <!-- Button to Open the Modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+        Add accident
+    </button>
+</div>
+
+<!-- The Modal -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Fill in information about accident</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form th:action="@{/main/add}" modelAtribute="accident" method="post">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Name"
+                               name="name">
+                        <br>
+                        <input type="text" class="form-control" placeholder="Address"
+                               name="address">
+                        <br>
+                        <textarea rows="3" class="form-control" placeholder="Description"
+                                  name="text"></textarea>
+                        <br>
+                        <input type="datetime-local" class="form-control" placeholder="Time of accident"
+                               name="gettime">
+                        <br>
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit">OK</button>
+                            <button class="btn btn-danger" type="button" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
