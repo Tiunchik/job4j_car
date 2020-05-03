@@ -1,0 +1,1 @@
+web: java -jar target/accident-1.0.jar
