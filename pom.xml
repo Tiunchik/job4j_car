@@ -156,19 +156,6 @@
             <version>3.6.2</version>
         </dependency>
 
-        <!-- dependency for psql and ldb - multithreading execution -->
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-dbcp2</artifactId>
-            <version>2.4.0</version>
-        </dependency>
-
-        <!-- dependencies for guava (normal join) -->
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>18.0</version>
-        </dependency>
 
         <!-- dependencies for testing -->
         <dependency>
@@ -199,35 +186,6 @@
             <scope>test</scope>
         </dependency>
 
-
-        <!--        <dependency>-->
-        <!--            <groupId>org.powermock</groupId>-->
-        <!--            <artifactId>powermock-module-testng</artifactId>-->
-        <!--            <version>2.0.5</version>-->
-        <!--            <scope>test</scope>-->
-        <!--        </dependency>-->
-
-        <!--        <dependency>-->
-        <!--            <groupId>org.powermock</groupId>-->
-        <!--            <artifactId>powermock-module-junit4</artifactId>-->
-        <!--            <version>2.0.5</version>-->
-        <!--            <scope>test</scope>-->
-        <!--        </dependency>-->
-
-        <!--        <dependency>-->
-        <!--            <groupId>org.powermock</groupId>-->
-        <!--            <artifactId>powermock-api-mockito2</artifactId>-->
-        <!--            <version>2.0.2</version>-->
-        <!--            <scope>test</scope>-->
-        <!--        </dependency>-->
-
-        <!--        <dependency>-->
-        <!--            <groupId>org.mockito</groupId>-->
-        <!--            <artifactId>mockito-core</artifactId>-->
-        <!--            <version>3.1.0</version>-->
-        <!--            <scope>test</scope>-->
-        <!--        </dependency>-->
-
         <!-- dependencies for logger -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
@@ -239,40 +197,6 @@
             <artifactId>log4j-core</artifactId>
             <version>2.13.0</version>
         </dependency>
-
-        <!-- dependencies for work with xml -->
-        <!--        <dependency>-->
-        <!--            <groupId>javax.xml</groupId>-->
-        <!--            <artifactId>jaxb-api</artifactId>-->
-        <!--            <version>2.1</version>-->
-        <!--        </dependency>-->
-
-        <!--        <dependency>-->
-        <!--            <groupId>com.sun.xml.bind</groupId>-->
-        <!--            <artifactId>jaxb-impl</artifactId>-->
-        <!--            <version>2.1</version>-->
-        <!--        </dependency>-->
-
-        <!--        &lt;!&ndash; dependencies for html parsing &ndash;&gt;-->
-        <!--        <dependency>-->
-        <!--            <groupId>org.jsoup</groupId>-->
-        <!--            <artifactId>jsoup</artifactId>-->
-        <!--            <version>1.12.2</version>-->
-        <!--        </dependency>-->
-
-        <!-- dependencies for timer -->
-        <!--        <dependency>-->
-        <!--            <groupId>org.quartz-scheduler</groupId>-->
-        <!--            <artifactId>quartz</artifactId>-->
-        <!--            <version>2.2.1</version>-->
-        <!--        </dependency>-->
-
-        <!--        &lt;!&ndash; dependencies for multithreading annotations &ndash;&gt;-->
-        <!--        <dependency>-->
-        <!--            <groupId>net.jcip</groupId>-->
-        <!--            <artifactId>jcip-annotations</artifactId>-->
-        <!--            <version>1.0</version>-->
-        <!--        </dependency>-->
 
         <!-- dependencies for hibernate libraries -->
         <dependency>
@@ -292,80 +216,6 @@
             <artifactId>hibernate-entitymanager</artifactId>
             <version>5.4.14.Final</version>
         </dependency>
-
-        <!-- dependenсis for Spring fraemwork -->
-
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework</groupId>-->
-        <!--            <artifactId>spring-core</artifactId>-->
-        <!--            <version>5.2.5.RELEASE</version>-->
-        <!--        </dependency>-->
-
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework</groupId>-->
-        <!--            <artifactId>spring-beans</artifactId>-->
-        <!--            <version>5.2.5.RELEASE</version>-->
-        <!--        </dependency>-->
-
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework</groupId>-->
-        <!--            <artifactId>spring-context</artifactId>-->
-        <!--            <version>5.2.5.RELEASE</version>-->
-        <!--        </dependency>-->
-
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework</groupId>-->
-        <!--            <artifactId>spring-web</artifactId>-->
-        <!--            <version>5.2.5.RELEASE</version>-->
-        <!--        </dependency>-->
-
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework</groupId>-->
-        <!--            <artifactId>spring-webmvc</artifactId>-->
-        <!--            <version>5.2.4.RELEASE</version>-->
-        <!--        </dependency>-->
-
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework.data</groupId>-->
-        <!--            <artifactId>spring-data-jpa</artifactId>-->
-        <!--            <version>2.2.5.RELEASE</version>-->
-        <!--        </dependency>-->
-
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework</groupId>-->
-        <!--            <artifactId>spring-orm</artifactId>-->
-        <!--            <version>5.2.4.RELEASE</version>-->
-        <!--        </dependency>-->
-
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework</groupId>-->
-        <!--            <artifactId>spring-jdbc</artifactId>-->
-        <!--            <version>5.2.4.RELEASE</version>-->
-        <!--        </dependency>-->
-
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework.security</groupId>-->
-        <!--            <artifactId>spring-security-core</artifactId>-->
-        <!--            <version>5.2.2.RELEASE</version>-->
-        <!--        </dependency>-->
-
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework.security</groupId>-->
-        <!--            <artifactId>spring-security-web</artifactId>-->
-        <!--            <version>5.2.2.RELEASE</version>-->
-        <!--        </dependency>-->
-
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework.security</groupId>-->
-        <!--            <artifactId>spring-security-config</artifactId>-->
-        <!--            <version>5.2.2.RELEASE</version>-->
-        <!--        </dependency>-->
-
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework.data</groupId>-->
-        <!--            <artifactId>spring-data-releasetrain</artifactId>-->
-        <!--            <version>Moore-SR6</version>-->
-        <!--        </dependency>-->
 
     </dependencies>
     <build>

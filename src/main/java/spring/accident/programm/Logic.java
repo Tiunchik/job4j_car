@@ -15,6 +15,7 @@ import spring.accident.database.DataService;
 import spring.accident.models.Accident;
 import spring.accident.models.Officer;
 import spring.accident.models.Participant;
+import spring.accident.models.Photo;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -85,7 +86,7 @@ public class Logic {
     /**
      * check is there officer thath have passed login and password and return example of finded object r null
      *
-     * @param login login of officer
+     * @param login    login of officer
      * @param password password of officer
      * @return example of officer or null
      */
@@ -124,5 +125,25 @@ public class Logic {
      */
     public Officer findByLogin(String login) {
         return base.findByLogin(login);
+    }
+
+    /**
+     * Save photo in data base
+     *
+     * @param photo object photo
+     * @return saved photo
+     */
+    public Photo save(Photo photo) {
+        return base.save(photo);
+    }
+
+    /**
+     * Find photo accordingly accident
+     *
+     * @param accident accident for seraching
+     * @return photo from database
+     */
+    public Photo findByAccident(Accident accident) {
+        return base.findByAccident(accident);
     }
 }

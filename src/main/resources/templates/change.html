@@ -13,7 +13,7 @@
     <h1>Change info about accident</h1>
 </div>
 <div class="container">
-    <form th:action="@{/change}" modelAtribute="accident" method="post" th:object="${accident}">
+    <form th:action="@{/change}" modelAtribute="accident" method="post" th:object="${accident}" enctype="multipart/form-data">
         <div class="form-group">
             <input type="hidden" class="form-control" name="id" id="id" placeholder="" th:value="*{id}">
             <label for="name">Name:</label>
@@ -27,6 +27,10 @@
         <div class="form-group">
             <label for="gettime">Time:</label>
             <input type="datetime-local" class="form-control" name="gettime" id="gettime" placeholder="" th:value="*{time}" required>
+        </div>
+        <div class="form-group">
+            <label for="photo">Photo of accident:</label>
+            <input type="file" class="form-control" name="photo" id="photo">
         </div>
         <div class="form-group">
             <label for="text">Description:</label>

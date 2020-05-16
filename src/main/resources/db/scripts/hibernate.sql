@@ -1,39 +1,3 @@
-alter table if exists accident
-    drop constraint if exists FKnvntfc6y6grxmsca21phw80sj;
-
-
-alter table if exists officer
-    drop constraint if exists FKo8fps1uyygedttwnw0aya5xwl;
-
-
-alter table if exists participant_accidents
-    drop constraint if exists FK37bqtaqb4oqy01e7c5hq65v2f;
-
-
-alter table if exists participant_accidents
-    drop constraint if exists FKdu7d6vp90lrmdfaytptrb5i1b;
-
-
-drop table if exists accident cascade;
-
-
-drop table if exists officer cascade;
-
-
-drop table if exists participant cascade;
-
-
-drop table if exists participant_accidents cascade;
-
-
-drop table if exists role cascade;
-
-
-drop sequence if exists hibernate_sequence;
-
-create sequence hibernate_sequence start 1 increment 1;
-
-
 create table accident (
                           id int4 not null,
                           address varchar(255),
@@ -44,6 +8,7 @@ create table accident (
                           officer_docserial int4,
                           primary key (id)
 );
+
 
 create table officer (
                          docserial int4 not null,
@@ -56,6 +21,7 @@ create table officer (
                          primary key (docserial)
 );
 
+
 create table participant (
                              first_name varchar(255) not null,
                              passport int4 not null,
@@ -63,6 +29,7 @@ create table participant (
                              description varchar(255),
                              primary key (first_name, passport, second_name)
 );
+
 
 create table participant_accidents (
                                        membo_first_name varchar(255) not null,
@@ -73,10 +40,19 @@ create table participant_accidents (
 );
 
 
+create table photo (
+                       id int4 not null,
+                       photo bytea not null,
+                       accident_id int4,
+                       primary key (id)
+);
+
+
 create table role (
                       id varchar(255) not null,
                       primary key (id)
 );
+
 
 alter table if exists officer
     add constraint UK_gc0g53qn8d40y2ntoefsa073h unique (login);
@@ -104,3 +80,9 @@ alter table if exists participant_accidents
     add constraint FKdu7d6vp90lrmdfaytptrb5i1b
         foreign key (membo_first_name, membo_passport, membo_second_name)
             references participant;
+
+
+alter table if exists photo
+    add constraint FKrlxp497mkinw1ln6fbnqqgpih
+        foreign key (accident_id)
+            references accident;

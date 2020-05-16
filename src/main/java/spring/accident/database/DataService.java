@@ -5,15 +5,18 @@
  */
 package spring.accident.database;
 
-import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.expression.Lists;
 import spring.accident.models.Accident;
 import spring.accident.models.Officer;
 import spring.accident.models.Participant;
+import spring.accident.models.Photo;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,8 +41,13 @@ public class DataService {
     @Autowired
     ParticipantRepository participantRepository;
 
+    @Autowired
+    PhotoRepository photoRepository;
+
     public List<Accident> findAllAccidents() {
-        return Lists.newArrayList(accidentRepository.findAll());
+        LinkedList<Accident> temp = new LinkedList<>();
+        accidentRepository.findAll().forEach(temp::add);
+        return temp;
     }
 
     public Accident saveAccident(Accident accident) {
@@ -69,6 +77,14 @@ public class DataService {
 
     public Officer findByLogin(String login) {
         return officerRepository.findByLogin(login);
+    }
+
+    public Photo save(Photo photo) {
+        return photoRepository.save(photo);
+    }
+
+    public Photo findByAccident(Accident accident) {
+        return photoRepository.findByAccident(accident);
     }
 
 }

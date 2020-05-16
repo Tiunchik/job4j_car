@@ -15,10 +15,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import spring.accident.models.Accident;
 import spring.accident.models.Officer;
+import spring.accident.models.Photo;
 import spring.accident.programm.Logic;
 
+import java.io.IOException;
 import java.security.Principal;
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -98,24 +101,37 @@ public class AccidentController {
      * @return main page with changed accident
      */
     @PostMapping(path = {"/change"})
-    public String getChangePage(
+    public String changeAccident(
             ModelMap model,
             @RequestParam("gettime") String time,
-            @ModelAttribute("accident") Accident accident) {
+            @ModelAttribute("accident") Accident accident,
+            @RequestParam("photo") MultipartFile photo) {
         Accident oldaccident = logic.findAccidentById(accident.getId());
         accident.setMembo(oldaccident.getMembo());
         if (accident.getTime() == null) {
             accident.setTime(parseTime(time));
         }
-        logic.saveAccident(accident);
+        accident = logic.saveAccident(accident);
+        if (photo != null) {
+            Photo file = logic.findByAccident(accident);
+            file = file == null ? new Photo() : file;
+            file.setAccident(accident);
+            try {
+                file.setPhoto(photo.getBytes());
+            } catch (IOException ex) {
+                LOG.error("IO file error", ex);
+            }
+
+            logic.save(file);
+        }
         return getAccidentPage(model);
     }
 
     /**
      * get list for changing
      *
-     * @param model    model, contains req/resp info
-     * @param id id of accident for changing
+     * @param model model, contains req/resp info
+     * @param id    id of accident for changing
      * @return change.html list
      */
     @GetMapping(path = {"/change/{id}"})

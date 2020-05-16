@@ -15,7 +15,7 @@
     </style>
 </head>
 <body>
-<div class="jumbotron text-center">
+<div class="navbar navbar-expand-sm bg-light justify-content-center">
     <h1>Full info about accident</h1>
 </div>
 <div class="container">
@@ -44,7 +44,7 @@
                 <div class="row" th:text="'Accident time: ' + *{time}"></div>
                 <br>
             </td>
-            <td><img class="rounded brd" src="#" alt="Can't find image"></td>
+            <td><img class="rounded brd" src="" alt="Can't find image" th:src="@{/load/{id}(id=${accident.id})}"></td>
         </tr>
         </tbody>
     </table>
@@ -72,7 +72,7 @@
     <div class="container">
         <!-- Button to Open the Modal -->
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-            Add partisipant
+            Add participant
         </button>
 
         <!-- The Modal -->

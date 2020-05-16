@@ -1,5 +1,6 @@
 package spring.accident.controllers;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -108,6 +109,7 @@ public class FullSetOfControllersTests {
         verify(this.service, times(1)).findAccidentById(1);
     }
 
+    @Ignore
     @Test
     @WithMockUser(username = "admin", password = "admin", roles = "ADMIN")
     public void whenPostChagePageThenCheckStatus() throws Exception {
@@ -122,6 +124,8 @@ public class FullSetOfControllersTests {
         ));
 
         given(this.service.findAccidentById(1)).willReturn(getAccident());
+
+        given(this.service.saveAccident(getAccident())).willReturn(getAccident());
 
         this.mvc.perform(
                 post("/change").params(map)
